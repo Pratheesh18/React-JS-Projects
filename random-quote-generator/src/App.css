@@ -1,0 +1,23 @@
+main{
+    text-align: center;
+    margin-top: 250px;
+}
+
+h1{
+    color:green;
+    margin-top: 120px;
+}
+
+/* button:hover{
+    color: black;
+} */
+
+.btn1{
+    transition-duration: 0.4s;
+    display: inline-block;
+    padding: 10px 25px;
+}
+.btn1:hover{
+    background-color: #4caf50;
+    color:white;
+}
