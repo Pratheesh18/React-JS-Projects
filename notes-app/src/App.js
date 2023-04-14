@@ -84,7 +84,7 @@ const App = () => {
                  note.text.toLowerCase().includes(searchText)
             )}
             handleAddNote={addNote}
-            handleDeleteNote={deleteNote}
+            handledeleteNote={deleteNote}
         />
       </div>
     </div>

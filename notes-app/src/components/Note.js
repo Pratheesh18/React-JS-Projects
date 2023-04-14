@@ -6,7 +6,7 @@ const Note = ({id,text,date,handledeleteNote}) => {
         <div className='note'>
             <span>  {text} </span>
             <div className='note-footer'>
-                <small>  {date} </small>
+                <small>  {date} </small> {/* small tag defines smaller text  */}
                 <MdDeleteForever
                     onClick = {() => handledeleteNote(id)}
                     className='delete-icon'
