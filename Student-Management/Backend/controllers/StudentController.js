@@ -10,6 +10,18 @@ const getAllStudents = async (ctx) => {
     }
 };
 
+const getStudentById = async (ctx) => {
+    try{
+        const student = await Student.findById(ctx.params.id);
+        if(!student){
+            ctx.throw(404 , 'Student not found');
+        }
+        ctx.body = student;
+    }catch(error){
+        ctx.throw(500,error.message);
+    }
+};
+
 
 const createStudent = async (ctx) => {
     try{
@@ -53,6 +65,7 @@ const deleteStudent = async (ctx) => {
 
 module.exports = {
     getAllStudents,
+    getStudentById,
     createStudent,
     updateStudent,
     deleteStudent
