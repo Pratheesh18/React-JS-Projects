@@ -4,10 +4,12 @@ const app = new Koa();
 const koaBody = require("koa-bodyparser")
 const studentRoutes = require("./routes/StudentRoutes");
 const mongoose = require("mongoose");
+const cors = require('koa-cors')
 
 
 
 app.use(koaBody()) // Middleware
+app.use(cors())
 
 app.use(studentRoutes.routes());
 

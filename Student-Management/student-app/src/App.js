@@ -3,8 +3,9 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import axios from 'axios';
-import './App.css'
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -41,39 +42,47 @@ function App() {
     <Container maxWidth="sm">
       <Box my={4}>
         <h2>Student Details</h2>
-        <TextField
-          label="Name"
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          fullWidth
-        />
-        <TextField
-          label="Class"
-          variant="outlined"
-          value={studentClass}
-          onChange={(e) => setStudentClass(e.target.value)}
-          fullWidth
-        />
-        <TextField
-          label="Age"
-          variant="outlined"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-          fullWidth
-        />
+        <Box my={2}>
+          <TextField
+            label="Name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+          />
+        </Box>
+        <Box my={2}>
+          <TextField
+            label="Class"
+            variant="outlined"
+            value={studentClass}
+            onChange={(e) => setStudentClass(e.target.value)}
+            fullWidth
+          />
+        </Box>
+        <Box my={2}>
+          <TextField
+            label="Age"
+            variant="outlined"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            fullWidth
+          />
+        </Box>
         <Button variant="contained" onClick={createStudent} color="primary">
           Create Student
         </Button>
 
         <h3>Student List</h3>
-        <ul>
-          {students.map((student) => (
-            <li key={student._id}>
-              {student.name} - {student.class} - {student.age}
-            </li>
-          ))}
-        </ul>
+        {students.map((student) => (
+          <Card key={student._id} sx={{ my: 2 }}>
+            <CardContent>
+              <h4>{student.name}</h4>
+              <p>Class: {student.class}</p>
+              <p>Age: {student.age}</p>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </Container>
   );
