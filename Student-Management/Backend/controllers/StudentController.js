@@ -48,14 +48,14 @@ const updateStudent = async (ctx) => {
         );
         ctx.body = student;
     }catch(error){
-        ctx.throw(500 , error);
+        ctx.throw(500 , error.message);
     }
 };
 
 const deleteStudent = async (ctx) => {
     try{
         const {id} = ctx.params;
-        await Student.findOneAndDelete(id);
+        await Student.findByIdAndDelete(id);
         ctx.body = "Student Deleted Successfully";
     }catch(error){
         ctx.throw(500,error)

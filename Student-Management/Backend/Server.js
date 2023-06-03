@@ -1,15 +1,14 @@
 require("dotenv").config();
 const Koa = require('koa');
-const app = new Koa();
 const koaBody = require("koa-bodyparser")
 const studentRoutes = require("./routes/StudentRoutes");
 const mongoose = require("mongoose");
-const cors = require('koa-cors')
+const cors = require('@koa/cors')
 
-
-
-app.use(koaBody()) // Middleware
+const app = new Koa();
 app.use(cors())
+app.use(koaBody()) // Middleware
+
 
 app.use(studentRoutes.routes());
 
