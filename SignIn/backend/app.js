@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const bodyParser = requyire('body-parser');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors');
 
@@ -12,20 +12,39 @@ app.use(cors());
 
 
 app.post('/signin' , (req,res) => {
-    const token = jwt.sign({username : req.body.username} , secretKey);
-    res.json();
+    const {username , password} = req.body;
+
+    if(username === 'pratheesh' && password === '1234'){
+        const token = jwt.sign({username} , secretKey);
+        res.json({token});
+    }else{
+        res.status(401)/json({message : 'Inavlid username  or password'});
+
+    }
 });
 
 
-app.get('/protected' , (req,res) => {
-    const token = req.headers.authorization.split('')[1];
-    jwt.verify(token,secretKey,(err,decoded) => {
-        if(err){
-            return res.status(401).json({message : 'Inavlid Token'});
-        }
-        res.json({message : 'Protected Content'})
+app.get('/protected', verifyToken, (req, res) => {
+  // This route is protected and can only be accessed with a valid token
+  res.json({ message: 'Protected content' });
+});
+
+function verifyToken(req, res, next) {
+    const token = req.headers.authorization;
+  
+    if (!token) {
+      return res.status(401).json({ message: 'Missing token' });
+    }
+  
+    jwt.verify(token, secretKey, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ message: 'Invalid token' });
+      }
+  
+      req.user = decoded;
+      next();
     });
-});
+  }
 
 
 app.listen(4000,() => {
