@@ -1,22 +1,27 @@
-import React , {useState} from 'react';
-import ChildComponent from './Child';
+import { useSelector , useDispatch } from "react-redux";
+
 
 
 
 const App = () => {
-  const [dataFromChild , setDataeFromChild]  = useState('');
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
 
 
-  const handledataFromChild = (data) => {
-    setDataeFromChild(data);
+  const increment = () => {
+    dispatch({type : 'INCREMENT'});
+  }
+
+  const decrement = () => {
+    dispatch({type : 'DECREMENT'});
   };
-
 
 
   return(
     <div>
-      <h1> Data From Child : {dataFromChild} </h1>
-      <ChildComponent onData={handledataFromChild} /> 
+      <h1>  Counter : {count} </h1>
+      <button onClick={increment}> Increment </button>
+      <button onClick={decrement}> Decrement </button>
     </div>
   );
 };
