@@ -1,13 +1,11 @@
 import React from 'react';
-import Page from './Problem';
-
 
 const App = () => {
-   return(
+  return(
     <div>
-      <Page />
+      Hello
     </div>
-   );
+  )
 };
 
 
