@@ -29,12 +29,14 @@ const Api = () => {
           return <h1> Loading </h1>
      }
    
+     console.log(users)
 
     return(
+        
         <div>
             <h1>  Data fetched successfully </h1>
             <div className="item-container">
-                { users && users.map((user) => (
+                {  users.map((user) => (
                     <div className="card"  key={user.id} >
                        <p>  {user.name} </p>
                        {/* <p>  {user.email} </p> */}
