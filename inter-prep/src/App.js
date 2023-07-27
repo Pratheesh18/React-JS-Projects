@@ -1,11 +1,12 @@
-import React from 'react';
-import Card from './components/Card';
+import React  , {useEffect , useState} from 'react';
+import Api from './components/Api';
+
 
 const App = () => {
   return(
     <div>
       {/* <Page /> */}
-      <Card />
+      <Api />
     </div>
   )
 };
