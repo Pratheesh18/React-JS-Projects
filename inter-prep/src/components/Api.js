@@ -39,7 +39,6 @@ const Api = () => {
                 {  users.map((user) => (
                     <div className="card"  key={user.id} >
                        <p>  {user.name} </p>
-                       {/* <p>  {user.email} </p> */}
                     </div>
                 ))}
             </div>
