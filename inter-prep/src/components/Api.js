@@ -7,6 +7,7 @@ import './card.css';
 const Api = () => {
     const [loading , setLoading] = useState(true);
     const [users,setUsers] = useState(null);
+    const [selectedUserEmail , setSelectedUserEmail] = useState(null);
 
 
     useEffect(() => {
@@ -29,6 +30,13 @@ const Api = () => {
      if(loading){
           return <h1> Loading </h1>
      }
+
+     const handleUserClick = (email) => {
+        setSelectedUserEmail(email);
+        setTimeout(() => {
+            setSelectedUserEmail('');
+        } , 5000)
+     }
    
      console.log(users)
 
@@ -38,11 +46,12 @@ const Api = () => {
             <h1>  Data fetched successfully </h1>
             <div className="item-container">
                 {  users.map((user) => (
-                    <div className="card"  key={user.id} >
+                    <div className="card"  key={user.id} onClick={() => handleUserClick(user.email)} >
                        <p>  {user.name} </p>
                     </div>
                 ))}
             </div>
+            {selectedUserEmail && <div className="card">  Email : {selectedUserEmail} </div>}
         </div>
     )
 };
