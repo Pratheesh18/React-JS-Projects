@@ -9,7 +9,7 @@ const AlertButton = ({message , children}) => {
   );
 };
 
-const ToolBar = () => {
+ const ToolBar = () => {
   return(
     <div>
       <AlertButton message="Playing!">
@@ -24,3 +24,4 @@ const ToolBar = () => {
 
 
 export default ToolBar;
+
