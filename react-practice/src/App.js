@@ -5,7 +5,7 @@ import ToolBar from './Problem';
 const App = () => {
    return(
     <div>
-      <ToolBar />
+      <ToolBar /> 
     </div>
    );
 };
