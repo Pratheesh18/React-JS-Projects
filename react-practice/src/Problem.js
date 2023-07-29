@@ -1,52 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-function Card({title,text,target,linkTitle,href,rel,onClick,linkClassName})
-{
-  return (
-    <div className="card">
 
-        <div className="card__title">{title}</div>
-
-        <div className="card__text">{text}</div>
-        <a className={`default-link card__link ${linkClassName}`} target={target} rel={rel} href={href} onClick={onClick}>
-          {linkTitle}
-        </a>
-    </div>
+const AlertButton = ({message , children}) => {
+  return(
+    <button onClick={() => alert(message)}>
+      {children}
+    </button>
   );
-}
+};
 
-export default function Page () {
-  const [cards, setCards] = useState();
-
-  useEffect(async () => {
-    var data = await fetch('https://my-json-server.typicode.com/savayer/demo/posts');
-    let json = data.json();
-
-    let newData;
-    json.forEach((item) => {
-      newData.id = item.id;
-      newData.title = item.title;
-      newData.link_title = item.link_title;
-      newData.link = item.link;
-      newData.text = item.body.en.substr(0, 50) + '...';
-    });
-
-    setCards(newData);
-  });
-
-  function analyticsTrackClick(url) {
-    // sending clicked link url to analytics
-    console.log(url);
-  }
-
-  return (
+const ToolBar = () => {
+  return(
     <div>
-    {cards.map(function (item) {
-      return (
-        <Card title={item.title.en} linkTitle={item.link_title} href={item.link} text={item.text} linkClassName={item.id == 1 ? 'card__link--red' : ''} target={item.id == 1 ? '_blank' : ''}
-          onClick={analyticsTrackClick(item.link)} />
-      );
-    })}
+      <AlertButton message="Playing!">
+        Play Movie
+      </AlertButton>
+      <AlertButton message="Uploading">
+        Upload Image
+      </AlertButton>
     </div>
-  );
-}
+  )
+};
+
+
+export default ToolBar;

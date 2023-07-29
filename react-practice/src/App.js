@@ -1,11 +1,11 @@
 import React from 'react';
-import Page from './Problem';
+import ToolBar from './Problem';
 
 
 const App = () => {
    return(
     <div>
-      <Page />
+      <ToolBar />
     </div>
    );
 };
