@@ -18,6 +18,7 @@ const AlertButton = ({message , children}) => {
       <AlertButton message="Uploading">
         Upload Image
       </AlertButton>
+      <p>  This is react </p>
     </div>
   )
 };
