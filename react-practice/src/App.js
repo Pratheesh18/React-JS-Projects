@@ -1,11 +1,13 @@
 import React from 'react';
-import Country from './Country';
-
+// import Country from './Country';
+import State from './State';
 
 const App = () => {
   return(
     <div>
-      <Country />
+      {/* <Country /> */}
+      <State />
+      <State />
     </div>
   );
 };
