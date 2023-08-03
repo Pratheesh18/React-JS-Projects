@@ -15,7 +15,7 @@ const PokemonThumbnail = ({id,name,image,type,height,weight,stat1,stat2,stat3,st
                 <h3>  {name.toUpperCase()} </h3>
                 <small> Type : {type} </small>
                 <button className='pokeinfo' onClick={() => setShow(!show)}> {show === true ? "know less..." : "know more..."}   </button>
-                {show===true ? <Description weightpok={weight} heightpok={height} pokstat1={stat1}
+                {show === true ? <Description weightpok={weight} heightpok={height} pokstat1={stat1}
                   pokstat2={stat2}
                   pokstat3={stat3}
                   pokstat4={stat4}
