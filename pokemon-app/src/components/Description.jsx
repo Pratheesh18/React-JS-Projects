@@ -1,18 +1,22 @@
 import React from 'react';
+import { Typography , Box } from '@mui/material';
 
-const Description = ({heightpok,weightpok,pokstat1,pokstat2,pokstat3,pokstat4,pokstat5,pokstat6,posbs1,posbs2,posbs3,posbs4,posbs5,posbs6 }) => {
+const Description = ({heightpok, weightpok, stats  }) => {
     return(
-        <div className='desc'>
-            <p><b>Height</b> is <b>{heightpok*10} cm.</b></p>
-            <p><b>Weight</b> is <b>{weightpok*0.1} kg</b></p>
-            <h3>Stat</h3>
-            <p><b>{pokstat1} : {posbs1}</b></p>
-            <p><b>{pokstat2} : {posbs2}</b></p>
-            <p><b>{pokstat3} : {posbs3}</b></p>
-            <p><b>{pokstat4} : {posbs4}</b></p>
-            <p><b>{pokstat5} : {posbs5}</b></p>
-            <p><b>{pokstat6} : {posbs6}</b></p>
-        </div>
+       <Box>
+        <Typography variant='body1'>
+            <b> Height : </b> {heightpok * 10} cm
+        </Typography>
+        <Typography variant='body1'>
+            <b> Weight :  </b> {weightpok * 0.1} kg
+        </Typography>
+        <Typography variant='h6' style={{marginTop:'10px'}}> Stats </Typography>
+        {stats.map((stat,index) => (
+            <Typography variant='body2' key={index}>
+                <b> {stat.stat.name} : </b> {stat.base_stat}
+            </Typography>
+        ))}
+       </Box>
     );
 };
 

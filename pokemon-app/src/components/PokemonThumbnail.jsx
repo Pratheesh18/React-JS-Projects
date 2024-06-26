@@ -1,40 +1,54 @@
-import React , {useState} from 'react';
-import Description from './Description';
+import React, { useState } from "react";
+import Description from "./Description";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+  Collapse,
+} from "@mui/material";
 
-const PokemonThumbnail = ({id,name,image,type,height,weight,stat1,stat2,stat3,stat4,stat5,stat6,bs1,bs2,bs3,bs4,bs5,bs6}) => {
-    const style = `thumb-container ${type}`;
-    const [show,setShow] = useState(false);
+const PokemonThumbnail = ({
+    id, name, image, type, height, weight, stats
+}) => {
+  const style = `thumb-container ${type}`;
+  const [show, setShow] = useState(false);
 
-    return(
-        <div className={style}>
-            <div className='number'>
-                <small> #0 {id} </small>
-            </div>
-            <img src={image} alt={name} />
-            <div className='detail-wrapper'>
-                <h3>  {name.toUpperCase()} </h3>
-                <small> Type : {type} </small>
-                <button className='pokeinfo' onClick={() => setShow(!show)}> {show === true ? "know less..." : "know more..."}   </button>
-                {show === true ? <Description weightpok={weight} heightpok={height} pokstat1={stat1}
-                  pokstat2={stat2}
-                  pokstat3={stat3}
-                  pokstat4={stat4}
-                  pokstat5={stat5}
-                  pokstat6={stat6}
-                
-                  posbs1={bs1}
-                  posbs2={bs2}
-                  posbs3={bs3}
-                  posbs4={bs4}
-                  posbs5={bs5}
-                  posbs6={bs6}
-                  /> : <> </> }
-            </div>
-        </div>
-    )
+  return (
+    <Card style={{ margin: "20px", textAlign: "center" }}>
+      <CardMedia
+        component="img"
+        alt={name}
+        height="200"
+        image={image}
+        title={name}
+        style={{ objectFit: "contain" }}
+      />
+      <CardContent>
+        <Typography variant="h5" component="div">
+          {name.toUpperCase()}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          Type : {type}
+        </Typography>
+        <Button
+          variant="outlined"
+          onClick={() => setShow(!show)}
+          style={{ marginTop: "10px" }}
+        >
+          {show ? "Know Less.." : "Know More ..."}
+        </Button>
+        <Collapse in={show} timeout="auto" unmountOnExit>
+           <Description
+               heightpok={height}
+               weightpok={weight}
+               stats={stats}
+            />
+        </Collapse>
+      </CardContent>
+    </Card>
+  );
 };
 
-
 export default PokemonThumbnail;
-
-

@@ -1,9 +1,10 @@
 import React, {useEffect , useState} from 'react';
 import PokemonThumbnail from './components/PokemonThumbnail';
+import {Container , Grid , Button , Typography} from '@mui/material';
 
 
 function App() {
-  const [allPokemons , setAllPokemos] = useState([]);
+  const [allPokemons , setAllPokemons] = useState([]);
   const [loadPoke , setLoadPoke] = useState('https://pokeapi.co/api/v2/pokemon?limit=5');
 
   const getAllPokemons = async () => {
@@ -16,7 +17,7 @@ function App() {
       result.forEach(async (pokemon) => {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
         const data = await res.json();
-        setAllPokemos(currentList => [...currentList , data])
+        setAllPokemons(currentList => [...currentList , data])
       });
     }
 
@@ -30,37 +31,41 @@ function App() {
   } , []);
 
   return (
-    <div className='app-container'>
-      <h1>  Pokemon Kingdom </h1>
-      <div className='pokemon-container'>
-        <div className='all-container'>
-      {allPokemons.map((pokemon,index) =>
-        <PokemonThumbnail
-           id={pokemon.id}
-           name={pokemon.name}
-           image = {pokemon.sprites.other.dream_world.front_default}
-                  type={pokemon.types[0].type.name}
-                  key={index}
-                  height = {pokemon.height}
-                  weight = {pokemon.weight}
-                  stat1 = {pokemon.stats[0].stat.name}
-                  stat2 = {pokemon.stats[1].stat.name}
-                  stat3 = {pokemon.stats[2].stat.name}
-                  stat4 = {pokemon.stats[3].stat.name}
-                  stat5 = {pokemon.stats[4].stat.name}
-                  stat6 = {pokemon.stats[5].stat.name}
-                  bs1 = {pokemon.stats[0].base_stat}
-                  bs2 = {pokemon.stats[1].base_stat}
-                  bs3 = {pokemon.stats[2].base_stat}
-                  bs4 = {pokemon.stats[3].base_stat}
-                  bs5 = {pokemon.stats[4].base_stat}
-                  bs6 = {pokemon.stats[5].base_stat}
-                  />
-      )}
-    </div>
-     <button className='load-more' onClick={() => getAllPokemons()}> More Pokemons </button>
-     </div>
-     </div>
+    <Container>
+    <Typography variant="h2" align="center" gutterBottom>
+      Pokémon Kingdom
+    </Typography>
+    <Grid container spacing={2}>
+      {allPokemons.map((pokemon, index) => {
+        const image = pokemon.sprites?.other?.['official-artwork']?.front_default || 
+                      pokemon.sprites?.front_default || 
+                      'placeholder_image_url'; // Fallback image URL or placeholder
+
+        return (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            <PokemonThumbnail
+              id={pokemon.id}
+              name={pokemon.name}
+              image={image}
+              type={pokemon.types[0]?.type?.name || 'Unknown'} // Fallback type
+              height={pokemon.height}
+              weight={pokemon.weight}
+              stats={pokemon.stats}
+            />
+          </Grid>
+        );
+      })}
+    </Grid>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={getAllPokemons}
+      fullWidth
+      style={{ marginTop: '20px' }}
+    >
+      Load More Pokémon
+    </Button>
+  </Container>
   );
 }
 
